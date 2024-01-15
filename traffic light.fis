@@ -1,0 +1,47 @@
+[System]
+Name='traffic light'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Vehicle'
+Range=[0 4]
+NumMFs=3
+MF1='LOW':'trimf',[0 1 2]
+MF2='MEDIUM':'trimf',[1 2 3]
+MF3='HIGH':'trimf',[2 3 4]
+
+[Input2]
+Name='Time'
+Range=[0 20]
+NumMFs=3
+MF1='SHORT':'trimf',[0 5 10]
+MF2='MEDIUM':'trimf',[5 10 15]
+MF3='LONG':'trimf',[10 15 20]
+
+[Output1]
+Name='Light'
+Range=[0 35]
+NumMFs=3
+MF1='SHORT':'trimf',[0 7.5 15]
+MF2='MEDIUM':'trimf',[10 17.5 25]
+MF3='LONG':'trimf',[20 27.5 35]
+
+[Rules]
+1 1, 1 (1) : 1
+1 2, 1 (1) : 1
+1 3, 2 (1) : 1
+2 1, 1 (1) : 1
+2 2, 2 (1) : 1
+2 3, 3 (1) : 1
+3 1, 2 (1) : 1
+3 2, 3 (1) : 1
+3 3, 3 (1) : 1
